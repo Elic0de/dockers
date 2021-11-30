@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  purpur:
+    image: itzg/minecraft-server:java11
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      ENABLE_RCON: "true"
+      VERSION: "1.16.5"
+      TYPE: "PURPUR"
+      MEMORY: "?G"
+      MOTD: "OneServer | ????"
+      SERVER_PORT: "25565"
+      MODE: "???"
+      OPS: "M1n1don"
+      DIFFICULTY: "???"
+      MAX_PLAYERS: 100
+      SPAWN_PROTECTION: 1
+      ENABLE_COMMAND_BLOCK: "true"      
+      ALLOW_NETHER: "???"
+      STOP_SERVER_ANNOUNCE_DELAY: "???"
+      TZ: "Asia/Tokyo"
+      ICON: "???"
+      OVERRIDE_ICON: "TRUE"
+    tty: true
+    stdin_open: true
+    restart: always
+    volumes:
+      - "./data:/data"
+      - "./worlds:/worlds:ro"
+      - "./plugins:/plugins:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+
+  backup:
+    image: itzg/mc-backup
+    environment:
+      ## 今後設定
+    volumes:
+      - "mc:/data:ro"
+      - "./mc-backups:/backups"
+    network_mode: "service:mc"
+
+volumes:
+  mc: {}
