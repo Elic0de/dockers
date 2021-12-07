@@ -26,7 +26,7 @@ services:
       OP_PERMISSION_LEVEL: 3
       OPS: "M1n1don"
       ENABLE_WHITELIST: true
-      WHITELIST: "Haruchl_,M1n1don,Junpei0,iorii,Ayadu,Reita1127"
+      WHITELIST: "M1n1don,Junpei0,Ayadu,Reita1127,Haruchl_,iorii"
     tty: true
     stdin_open: true
     restart: always
