@@ -1,0 +1,49 @@
+version: '3.8'
+# 消してね
+x-itzg-mc-app: &itzg-mc-app
+  restart: always
+  tty: true
+  stop_grace_period: 1m
+
+x-itzg-mc-environments: &itzg-mc-environments
+  EULA: "TRUE"
+#  TYPE: "PURPUR"  各サバにあったタイプを指定するため定義する必要ない
+#  VERSION: "1.16.5" 全サバ 1.16.5に統一しないならない方がいい
+#  MEMORY: "6G" 各サバにメモリをちゃんと振ったほうがいい
+#  SERVER_PORT: "25500" コンテナ内のポートだから重複がないので意味がない
+#  OVERRIDE_ICON: true もともとtrueになっているので定義する必要がない
+#  ENABLE_RCON: true 同上
+#  ONLINE_MODE: true 同上
+  ALLOW_NETHER: false
+#  ENABLE_COMMAND_BLOCK: true 同上
+  MOTD: "OneServer | Red Build Server"
+#  MODE: "creative" 各サバモード変更すると思うから定義はしない
+#  DIFFICULTY: "peaceful" 同上
+  MAX_PLAYERS: 50
+  SPAWN_PROTECTION: 1
+  TZ: "Asia/Tokyo"
+#  OP_PERMISSION_LEVEL: 3 同上
+  OPS: "M1n1don"
+#  ENABLE_WHITELIST: true 今後offにするので定義をしないほうがいい
+#  WHITELIST: "M1n1don,Junpei0,Ayadu,Reita1127,Haruchl_,iorii" 
+
+services:
+  event1: # one.net:25510でevent1にアクセスできる bungeeを使うなら"event1:25565"で
+    image: itzg/minecraft-server
+    environment:
+      TYPE: PURPUR
+      VERSION: 1.16.5
+    ports:
+      - 25510:25565
+    volumes:
+      - ./event1:/data
+
+  build:
+    image: itzg/minecraft-server
+    environment:
+      TYPE: PURPUR
+      VERSION: 1.16.5
+    ports:
+      - 25500:25565
+    volumes:
+      - ./build:/data

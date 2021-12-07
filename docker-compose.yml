@@ -1,0 +1,40 @@
+version: '3.8'
+
+x-itzg-mc-app: &itzg-mc-app
+  restart: always
+  tty: true
+  stop_grace_period: 1m
+
+x-itzg-mc-environments: &itzg-mc-environments
+  EULA: "TRUE"
+  ALLOW_NETHER: false
+  MOTD: "OneServer | Red Build Server"
+  MAX_PLAYERS: 50
+  SPAWN_PROTECTION: 1
+  TZ: "Asia/Tokyo"
+  OPS: "M1n1don"
+
+services:
+  event1:
+    <<: *itzg-mc-app
+    image: itzg/minecraft-server
+    environment:
+      <<: *itzg-mc-environments
+      TYPE: PURPUR
+      VERSION: 1.16.5
+    ports:
+      - 25510:25565
+    volumes:
+      - ./event1:/data
+
+  build:
+    <<: *itzg-mc-app
+    image: itzg/minecraft-server
+    environment:
+      <<: *itzg-mc-environments
+      TYPE: PURPUR
+      VERSION: 1.16.5
+    ports:
+      - 25500:25565
+    volumes:
+      - ./build:/data
