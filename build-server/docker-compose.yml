@@ -3,44 +3,32 @@ version: '3.8'
 services:
   purpur:
     image: itzg/minecraft-server:java11
+    container_name: purpur-build
     ports:
       - "25565:25565"
     environment:
       EULA: "TRUE"
-      ENABLE_RCON: "true"
-      VERSION: "1.16.5"
       TYPE: "PURPUR"
-      MEMORY: "?G"
-      MOTD: "OneServer | ????"
+      VERSION: "1.16.5"
+      MEMORY: "6G"
       SERVER_PORT: "25565"
-      MODE: "???"
-      OPS: "M1n1don"
-      DIFFICULTY: "???"
-      MAX_PLAYERS: 100
+      OVERRIDE_ICON: true
+      ENABLE_RCON: true
+      ONLINE_MODE: true
+      ALLOW_NETHER: false
+      ENABLE_COMMAND_BLOCK: true
+      MOTD: "OneServer | Red Build Server"
+      MODE: "creative"
+      DIFFICULTY: "peaceful"
+      MAX_PLAYERS: 50
       SPAWN_PROTECTION: 1
-      ENABLE_COMMAND_BLOCK: "true"      
-      ALLOW_NETHER: "???"
-      STOP_SERVER_ANNOUNCE_DELAY: "???"
       TZ: "Asia/Tokyo"
-      ICON: "???"
-      OVERRIDE_ICON: "TRUE"
+      OP_PERMISSION_LEVEL: 3
+      OPS: "M1n1don"
+      ENABLE_WHITELIST: true
+      WHITELIST: "Haruchl_,M1n1don,Junpei0,iorii,Ayadu,Reita1127"
     tty: true
     stdin_open: true
     restart: always
     volumes:
-      - "./data:/data"
-      - "./worlds:/worlds:ro"
-      - "./plugins:/plugins:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-
-  backup:
-    image: itzg/mc-backup
-    environment:
-      ## 今後設定
-    volumes:
-      - "mc:/data:ro"
-      - "./mc-backups:/backups"
-    network_mode: "service:mc"
-
-volumes:
-  mc: {}
+      - "../build:/data"
