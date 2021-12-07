@@ -5,13 +5,13 @@ services:
     image: itzg/minecraft-server:java11
     container_name: purpur-build
     ports:
-      - "25565:25565"
+      - "25500:25500"
     environment:
       EULA: "TRUE"
       TYPE: "PURPUR"
       VERSION: "1.16.5"
       MEMORY: "6G"
-      SERVER_PORT: "25565"
+      SERVER_PORT: "25500"
       OVERRIDE_ICON: true
       ENABLE_RCON: true
       ONLINE_MODE: true
