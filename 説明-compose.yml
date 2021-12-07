@@ -8,7 +8,7 @@ x-itzg-mc-app: &itzg-mc-app
 x-itzg-mc-environments: &itzg-mc-environments
   EULA: "TRUE"
 #  TYPE: "PURPUR"  各サバにあったタイプを指定するため定義する必要ない
-#  VERSION: "1.16.5" 全サバ 1.16.5に統一しないならない方がいい
+#  VERSION: "1.16.5" 全サバ 1.16.5に統一しない方がいい
 #  MEMORY: "6G" 各サバにメモリをちゃんと振ったほうがいい
 #  SERVER_PORT: "25500" コンテナ内のポートだから重複がないので意味がない
 #  OVERRIDE_ICON: true もともとtrueになっているので定義する必要がない
